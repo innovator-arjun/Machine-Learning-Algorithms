@@ -10,7 +10,10 @@ Natural Language Processing
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
 #importing the dataset
 #tsv means tab seperated value
 #we Should use tsv for NLP. Since in text people will use comma.
@@ -19,7 +22,7 @@ data_review=pd.read_csv('Restaurant_Reviews.tsv',delimiter='\t',quoting=3)
 
 
 #Step 1: 
-import re
+
 
 #To remove everything except a-z , A-Z and space.
 review=re.sub('[^a-zA-Z]',' ',data_review['Review'][0])
@@ -35,8 +38,7 @@ review=review.lower()
 #loves,love,loved,loving -->stemming
 
 #Step 3:
-import nltk
-from nltk.corpus import stopwords
+
 nltk.download('stopwords')
 
 #to make the string to list of strings
@@ -44,4 +46,20 @@ review=review.split()
 
 #for loop to remove the stop words from our review
 #use set() to commpute fastter
-review=[word for word in review if not word in set(stopwords.words('english'))]
+ps=PorterStemmer()
+review=[ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+
+#to make it as a string
+review=' '.join(review)
+
+#create a for loop to clean all the review
+corpus=[]
+for i in range(0,1000):
+    comment=re.sub('[^a-zA-Z]',' ',data_review['Review'][i])
+    comment=comment.lower()
+    comment=comment.split()
+    ps=PorterStemmer()
+    comment=[ps.stem(word) for word in comment if not word in set(stopwords.words('english'))]
+    comment=' '.join(comment)
+    corpus.append(comment)
+
