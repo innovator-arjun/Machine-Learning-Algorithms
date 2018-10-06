@@ -63,3 +63,45 @@ for i in range(0,1000):
     comment=' '.join(comment)
     corpus.append(comment)
 
+#Create the bag of words model
+#loved,loves,love-->love
+
+from sklearn.feature_extraction.text import CountVectorizer
+cv=CountVectorizer(max_features=1500)
+#max_feature to select the frequent words
+X=cv.fit_transform(corpus).toarray() # To create a sparse matrix based on the words
+
+#we need to include dependent variable
+
+y=data_review.iloc[:,1].values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
