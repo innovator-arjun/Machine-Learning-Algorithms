@@ -53,6 +53,7 @@ review=[ps.stem(word) for word in review if not word in set(stopwords.words('eng
 review=' '.join(review)
 
 #create a for loop to clean all the review
+#Stemming-->loved,loves,love-->love
 corpus=[]
 for i in range(0,1000):
     comment=re.sub('[^a-zA-Z]',' ',data_review['Review'][i])
@@ -64,7 +65,7 @@ for i in range(0,1000):
     corpus.append(comment)
 
 #Create the bag of words model
-#loved,loves,love-->love
+
 
 from sklearn.feature_extraction.text import CountVectorizer
 cv=CountVectorizer(max_features=1500)
@@ -75,12 +76,27 @@ X=cv.fit_transform(corpus).toarray() # To create a sparse matrix based on the wo
 
 y=data_review.iloc[:,1].values
 
+#X--> independent variable
+#y--> dependent variable
 
 
+from sklearn.cross_validation import train_test_split
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0,test_size=0.20)
+
+from sklearn.naive_bayes import GaussianNB
+
+classifier=GaussianNB()
+classifier.fit(X_train,y_train)
+
+y_pred=classifier.predict(X_test)
+
+from sklearn.metrics import confusion_matrix
+
+cm=confusion_matrix(y_test,y_pred)
 
 
-
-
+(55+91)/200
 
 
 
