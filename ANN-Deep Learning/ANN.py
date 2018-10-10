@@ -11,6 +11,11 @@ import matplotlib.pyplot as plt
 
 dataset=pd.read_csv('Churn_Modelling.csv')
 
+
+dataset.Gender.value_counts()
+
+dataset.Geography.value_counts()
+
 X=dataset.iloc[:,3:13].values
 y=dataset.iloc[:,13].values
 
@@ -38,3 +43,52 @@ X=X[:,1:]
 from sklearn.model_selection import train_test_split
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=0)
+
+#Feature Scaling to avoid domination of independent variable over antoher
+
+from sklearn.preprocessing import StandardScaler
+
+sc=StandardScaler()
+X_train=sc.fit_transform(X_train)
+X_test=sc.fit_transform(X_test)
+
+
+#Part-2 Let's make the ANN!
+import keras
+
+from keras.models import Sequential
+from keras.layers import Dense
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
