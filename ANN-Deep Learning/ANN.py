@@ -75,7 +75,7 @@ classifier.add(Dense(output_dim=6,kernel_initializer='uniform',activation='relu'
 #take the avg of input and output to select the node for Hidden layer
 
 #Adding the second hidden layer
-classifier.add(Dense(output_dim=6,kernel_initializer='uniform',activation='relu'))
+classifier.add(Dense(output_dim=4,kernel_initializer='uniform',activation='relu'))
 (1+11)/2
 
 
@@ -83,13 +83,27 @@ classifier.add(Dense(output_dim=6,kernel_initializer='uniform',activation='relu'
 #change the activation to sigmoid to find the probability
 classifier.add(Dense(output_dim=1,kernel_initializer='uniform',activation='sigmoid'))
 
+#Compiling the ANN
+#Optimizer--> Gradient  stochastic gradient
+classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
+
+#Fitting the ANN to the training set
+classifier.fit(X_train,y_train,nb_epoch=150,batch_size=15)
+
 
 #Part 3 Making the prediction and evaluation the model
 
 
+y_pred=classifier.predict(X_test)
+#Y_pred is in the for of probability, so we should use threshold.
+y_pred=(y_pred>0.5)
+
+from sklearn.metrics import confusion_matrix
+
+cm=confusion_matrix(y_test,y_pred)
 
 
-
+(1534+189)/2000
 
 
 
