@@ -59,16 +59,32 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense
 
+#Sequential is ANN class-Initialising the ANN
+classifier=Sequential()
+
+#11 input layer --> 11 independent column
+
+#we will use rectifier funtion as an activation hidden layer
+#Sigmoid to find probability at the output layer
+#Dense will assign a random number close to 0 not 0
+
+#Adding the input layer and the first hidden layer
+classifier.add(Dense(output_dim=6,kernel_initializer='uniform',activation='relu',input_dim=11))
+
+(11+1)/2#output_dim
+#take the avg of input and output to select the node for Hidden layer
+
+#Adding the second hidden layer
+classifier.add(Dense(output_dim=6,kernel_initializer='uniform',activation='relu'))
+(1+11)/2
 
 
+#Adding the output layer
+#change the activation to sigmoid to find the probability
+classifier.add(Dense(output_dim=1,kernel_initializer='uniform',activation='sigmoid'))
 
 
-
-
-
-
-
-
+#Part 3 Making the prediction and evaluation the model
 
 
 
