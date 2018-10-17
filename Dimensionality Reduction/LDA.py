@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 """
+Created on Wed Oct 17 10:56:17 2018
+
+@author: avaithil
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Tue Oct 16 11:15:22 2018
 
 @author: avaithil
 """
-#Principal Component Analysis
+#Linear Discriminant Analysis
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -25,13 +32,14 @@ X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 
-#Dimensionality Reduction-PCA
-#Apply PCA
-from sklearn.decomposition import PCA
-pca=PCA(n_components=2,random_state=0)
-X_train=pca.fit_transform(X_train)
-X_test=pca.transform(X_test)
-explained_variance=pca.explained_variance_ratio_
+#Dimensionality Reduction-LDA
+#Apply LDA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+lda=LDA(n_components=2)
+X_train=lda.fit_transform(X_train,y_train)
+X_test=lda.transform(X_test)
+
+
 
 
 
@@ -61,8 +69,8 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green', 'blue'))(i), label = j)
 plt.title('Logistic Regression (Training set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LDA 1')
+plt.ylabel('LDA 2')
 plt.legend()
 plt.show()
 
@@ -79,8 +87,8 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green', 'blue'))(i), label = j)
 plt.title('Logistic Regression (Test set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LDA 1')
+plt.ylabel('LDA 2')
 plt.legend()
 plt.show()
 
