@@ -41,5 +41,5 @@ cm = confusion_matrix(y_test, y_pred)
 # Applying k-Fold Cross Validation
 from sklearn.model_selection import cross_val_score
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-accuracies.mean()
+avg=accuracies.mean()
 accuracies.std()
