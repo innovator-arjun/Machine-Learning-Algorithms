@@ -68,6 +68,9 @@ fig=dataset.groupby(['issue_dt','grade'])['loan_amnt'].sum().unstack().plot(figs
 
 
 
+titanic_dataset=pd.read_csv('titanic.csv')
+
+
 
 
 
