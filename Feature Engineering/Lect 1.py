@@ -71,6 +71,64 @@ fig=dataset.groupby(['issue_dt','grade'])['loan_amnt'].sum().unstack().plot(figs
 titanic_dataset=pd.read_csv('titanic.csv')
 
 
+titanic_dataset.isnull().sum()
+
+titanic_dataset['age_null']=np.where(titanic_dataset.Age.isnull(),1,0)
+
+titanic_dataset.groupby(['Survived'])['age_null'].mean()
+titanic_dataset.groupby(['Sex'])['age_null'].mean()
+
+
+titanic_dataset[titanic_dataset['Embarked'].isnull()]
+
+
+titanic_dataset.Cabin.isnull().sum()
+
+titanic_dataset['cabin_null']=np.where(titanic_dataset.Cabin.isnull(),1,0)
+
+titanic_dataset.groupby(['Survived'])['cabin_null'].mean()
+
+
+
+
+
+dataset=pd.read_csv('loan.csv',usecols=['emp_title','emp_length'])
+dataset.head()
+
+dataset.emp_title.unique()[1:20]
+
+
+dataset.emp_length.value_counts()/len(dataset)*100
+
+dataset.emp_length.unique()
+
+
+length_dict={k:'0-10 years' for k in dataset.emp_length.unique()}
+length_dict['10+ years']='10+ years'
+length_dict['n/a']='n/a'
+dataset['emp_length_redefined']=dataset.emp_length.map(length_dict)
+
+
+value=len(dataset[dataset.emp_title.isnull()])
+
+dataset[dataset.emp_title.isnull()].groupby(['emp_length_redefined'])['emp_length'].count().sort_values()/value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
