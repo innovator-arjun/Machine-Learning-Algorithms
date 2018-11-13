@@ -5,7 +5,7 @@
 
 
 import pandas as pd
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 import matplotlib.pyplot as plt
 
@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # In[2]:
 
 
-data=pd.read_csv('data/Salary_Data.csv')
+data=pd.read_csv('Salary_Data.csv')
 
 
 # In[3]:
